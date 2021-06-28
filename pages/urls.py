@@ -1,9 +1,9 @@
-from pages.views import hello_world
+from pages.views import page
 from django.urls.conf import path
 
 
 app_name = "pages"
 
 urlpatterns = [
-    path('hello_world/', hello_world, name='hello_world')
+    path('page/', page, name='page')
 ]
