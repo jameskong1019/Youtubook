@@ -5,10 +5,10 @@ from youtube_transcript_api import YouTubeTranscriptApi
 from django.shortcuts import render
 import json
 
-
+video_id = 'fE2h3lGlOsk'
 def page(request):
     pages = []
-    transcript_list = YouTubeTranscriptApi.list_transcripts('fE2h3lGlOsk')
+    transcript_list = YouTubeTranscriptApi.list_transcripts(video_id)
     for transcript in transcript_list:
         if transcript.language_code == 'ko':
             for line in transcript.fetch():
@@ -17,5 +17,8 @@ def page(request):
                     'startTime': jsonObject["start"],
                     'subscript': jsonObject["text"]
                 })))
-    context = {'pages': pages}
-    return render(request, 'page/page.html', context)
+    context = {
+        'pages': pages,
+        'video_id': video_id
+    }
+    return render(request, 'page.html', context)
