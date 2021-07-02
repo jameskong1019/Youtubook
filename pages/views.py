@@ -4,7 +4,8 @@ from .models import Page
 from youtube_transcript_api import YouTubeTranscriptApi
 from django.shortcuts import render
 import json
-
+import datetime
+# fE2h3lGlOsk
 video_id = 'fE2h3lGlOsk'
 def page(request):
     pages = []
@@ -15,6 +16,7 @@ def page(request):
                 jsonObject = json.loads(json.dumps(line))
                 pages.append(json.loads(json.dumps({
                     'startTime': jsonObject["start"],
+                    'formattedTime': str(datetime.timedelta(seconds=jsonObject["start"])),
                     'subscript': jsonObject["text"]
                 })))
     context = {

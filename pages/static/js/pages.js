@@ -9,22 +9,24 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('YouTube-player', {
-        height: '390',
-        width: '640',
+        height: '50%',
+        width: '80%',
+        origin: 'http://localhost:8000',
         videoId: video_id,
         playerVars: {
-            cc_load_policy : 1,
-            enablejsapi: 1,
-            playsinline: 1,
-            start: 0,
-            disablekb: 0,
-            controls: 0,
-            showinfo: 0,
-            showsearch: 0,
-            iv_load_policy: 3,
-            modestbranding: 1,
-            fs: 0,
-            rel: 1
+            'enablejsapi': 1,
+            'playsinline': 1,
+            'autoplay': 0,
+            'controls': 1,
+            'rel': 0,
+            'showinfo': 0,
+            'showsearch': 0,
+            'mute': 0,
+            'modestbranding': 1,
+            'disablekb': 1,
+            'loop': 1,
+            'origin': window.location.href,
+            'cc_load_policy' : 1,
         },
         events: {
             'onReady': onPlayerReady,
@@ -35,7 +37,8 @@ function onYouTubeIframeAPIReady() {
 
 function onPlayerReady(event) {
     player.playVideo();
-    document.getElementsByClassName("ytp-pause-overlay ytp-scroll-min")[0].style.display = 'none';
+    var test = document.getElementById('YouTube-player').contentWindow.document;
+    $("iframe").contents().find("head").append("<style>.ytp-pause-overlay{display: none !important;}</style>");  
 }
 
 var done = false;
@@ -49,9 +52,13 @@ function stopVideo() {
 function playVideo(startTime) {
     player.seekTo(startTime);
     player.playVideo();
-    setTimeout(function () {
-        player.pauseVideo();
-    }, 100)
-
+    // setTimeout(function () {
+    //     player.pauseVideo();
+    //     $(".ytp-button.ytp-collapse").ready(function() {
+    //         setTimeout(function () {
+    //             $(".ytp-button.ytp-collapse").click();
+    //         }, 100);
+    //     });
+    // }, 100);
     return false;
 }
