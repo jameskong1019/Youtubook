@@ -34,7 +34,7 @@ SECRET_KEY = 'django-insecure-=w#*wm=w_p_05z$xabp#(04ttuzfog^j0h6k@p79c1p^-rg!#l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.herokuapp.com']
+ALLOWED_HOSTS = ['.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'wsgi.application'
 
 DATABASES = {
     "default": {
-        'ENGINE': os.getenv('DATABASE_ENGINE'),
+        "ENGINE": "django.db.backends.postgresql",
         "NAME": "postgres",
         "USER": "postgres",
         "PASSWORD": "postgres",
