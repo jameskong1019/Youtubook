@@ -13,6 +13,8 @@ services:
       - .:/web
     depends_on:
       - db
+    networks:
+      - djangonetwork
   db:
     image: postgres
     environment:
@@ -20,3 +22,8 @@ services:
       - POSTGRES_PASSWORD=postgres
     volumes:
       - django_db_dev:/var/lib/postgresql/data
+    networks:
+      - djangonetwork
+networks:
+  djangonetwork:
+      driver: bridge
