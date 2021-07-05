@@ -1,0 +1,9 @@
+<form action="{% url 'pages:page' %}" method="post">
+{% csrf_token %}
+<fieldset>
+    <h1>Enter youtube url or video ID<h1>
+    <input type="text" name="youtube_url" id="YoutubeUrl">
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <input type="submit" value="Page">
+</fieldset>
+</form>

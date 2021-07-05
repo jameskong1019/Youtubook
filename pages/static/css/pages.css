@@ -5,3 +5,11 @@
 a {
     font-size: 20px;
 }
+
+#player-wrapper {
+    text-align: center;
+    position: sticky;
+    top: 0;
+    background: black;
+    margin-bottom: 20px;
+}

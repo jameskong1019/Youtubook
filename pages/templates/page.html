@@ -1,16 +1,19 @@
 {% load static %}
-<div id="YouTube-player"></div>
+<div id="Player-wrapper">
+    <div id="YouTube-player"></div>
+</div>
 {% if pages %}
-    <ul>
+    <div>
     {% for page in pages %}
         <a onclick="playVideo({{page.startTime}})" class="page-line" time="{{page.startTime}}">{{ page.subscript }}</a>
         {% if forloop.counter|divisibleby:3 %}
             <br>
         {% endif %}
     {% endfor %}
-    </ul>
+    </div>
 {% else %}
-    <p>No pages available.</p>
+    <p>{{ error_message }}</p>
+    <p>{{ stack_trace }}</p>
 {% endif %}
 <span id="video_id" value="{{video_id}}"></span>
 <script type="text/javascript" src="{% static 'plugin/jquery-3.6.0.min.js' %}"></script> 
