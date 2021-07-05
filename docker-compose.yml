@@ -24,6 +24,6 @@ services:
       - django_db_dev:/var/lib/postgresql/data
     networks:
       - djangonetwork
-  networks:
-    djangonetwork:
-        driver: bridge
+networks:
+  djangonetwork:
+      driver: bridge

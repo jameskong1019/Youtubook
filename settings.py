@@ -10,8 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import platform
 import os
 from pathlib import Path
+
+dbHost = ""
+# Linux means running inside Ubuntu in docker in my case.
+if platform.system() == "Linux":
+    dbHost = "db"  # or use .env file
+else:
+    dbHost = "localhost"
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -77,11 +85,11 @@ WSGI_APPLICATION = 'wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
+        'ENGINE': os.getenv('DATABASE_ENGINE'),
         "NAME": "postgres",
         "USER": "postgres",
         "PASSWORD": "postgres",
-        "HOST": "localhost",
+        "HOST": dbHost,
         "PORT": 5432,
     }
 }
