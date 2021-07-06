@@ -9,14 +9,14 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('YouTube-player', {
-        height: '50%',
-        width: '80%',
+        height: '100%',
+        width: '100%',
         origin: 'http://localhost:8000',
         videoId: video_id,
         playerVars: {
             'enablejsapi': 1,
             'playsinline': 1,
-            'autoplay': 0,
+            'autoplay': 1,
             'controls': 1,
             'rel': 0,
             'showinfo': 0,

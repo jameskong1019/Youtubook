@@ -1,3 +1,7 @@
+body {
+    margin: 0;
+}
+
 .ytp-pause-overlay {
     display: none !important;
 }
@@ -12,4 +16,16 @@ a {
     top: 0;
     background: black;
     margin-bottom: 20px;
+    max-width: 100%;
+    height: 70%;
+}
+
+#page-wrapper {
+    margin : 8px;
+}
+
+@media only screen and (max-width: 600px) {
+    #player-wrapper {
+        height: 30%;
+    }
 }

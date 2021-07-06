@@ -1,15 +1,16 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 {% load static %}
-<div id="Player-wrapper">
+<div id="player-wrapper">
     <div id="YouTube-player"></div>
 </div>
 {% if pages %}
-    <div>
-    {% for page in pages %}
-        <a onclick="playVideo({{page.startTime}})" class="page-line" time="{{page.startTime}}">{{ page.subscript }}</a>
-        {% if forloop.counter|divisibleby:3 %}
-            <br>
-        {% endif %}
-    {% endfor %}
+    <div id="page-wrapper">
+        {% for page in pages %}
+            <a onclick="playVideo({{page.startTime}})" class="page-line" time="{{page.startTime}}">{{ page.subscript }}</a>
+            {% if forloop.counter|divisibleby:3 %}
+                <br>
+            {% endif %}
+        {% endfor %}
     </div>
 {% else %}
     <p>{{ error_message }}</p>
