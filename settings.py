@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-dbHost = "db"
+dbHost = ""
+if platform.system() == "Linux":
+    dbHost = "db"
+else:
+    dbHost = "localhost"    
+      
 DATABASES = {
 "default": {
     "ENGINE": 'django.db.backends.postgresql',
@@ -88,10 +92,9 @@ DATABASES = {
     }
 }
 
-if platform.system() != "Linux":
-    import dj_database_url
-    db_from_env = dj_database_url.config(conn_max_age=600)
-    DATABASES['default'].update(db_from_env)
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
     
 
 
