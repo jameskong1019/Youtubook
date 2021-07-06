@@ -14,13 +14,6 @@ import platform
 import os
 from pathlib import Path
 
-dbHost = ""
-# Linux means running inside Ubuntu in docker in my case.
-if platform.system() == "Linux":
-    dbHost = "db"  # or use .env file
-else:
-    dbHost = "localhost"
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -83,20 +76,25 @@ WSGI_APPLICATION = 'wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+dbHost = "db"
 DATABASES = {
-    "default": {
-        "ENGINE": os.getenv('DATABASE_ENGINE'),
-        "NAME": "postgres",
-        "USER": "postgres",
-        "PASSWORD": "postgres",
-        "HOST": dbHost,
-        "PORT": 5432,
+"default": {
+    "ENGINE": 'django.db.backends.postgresql',
+    "NAME": "postgres",
+    "USER": "postgres",
+    "PASSWORD": "postgres",
+    "HOST": dbHost,
+    "PORT": 5432,
     }
 }
 
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
+if platform.system() != "Linux":
+    import dj_database_url
+    db_from_env = dj_database_url.config(conn_max_age=600)
+    DATABASES['default'].update(db_from_env)
+    
+
+
 
 
 # Password validation
