@@ -10,12 +10,18 @@ import validators
 import sys
 
 # fE2h3lGlOsk
+# https://youtu.be/TFFtDLZnbSs
+# https://www.youtube.com/watch?app=desktop&v=TFFtDLZnbSs&t=325s
 
 def page(request):
     youtube_url = request.POST.get("youtube_url")
     if validators.url(youtube_url) == True:
         parsed = urllib.parse.urlparse(youtube_url)
-        video_id = urllib.parse.parse_qs(parsed.query)['v'][0]
+        params = urllib.parse.parse_qs(parsed.query)
+        if bool(params):
+            video_id = urllib.parse.parse_qs(parsed.query)['v'][0]
+        else:
+            video_id = youtube_url.rsplit('/', 1)[1]
     else:
         video_id = youtube_url
     pages = []
