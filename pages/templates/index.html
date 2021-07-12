@@ -1,4 +1,5 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% load static %}
 <form action="{% url 'pages:page' %}" method="post">
 {% csrf_token %}
 <fieldset>
@@ -7,11 +8,14 @@
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
     <input type="submit" value="Page">
 </fieldset>
- {% if latest_entered_videos %}
+<div class="video_list">
+{% if latest_entered_videos %}
     {% for video in latest_entered_videos %}
     <div>
-        <a onclick="#" class="video-link">{{ video.url }}</a>
+        <a href="{% url 'pages:detail' video_id=video.video_id %}" class="video-link">{{ video.url }}</a>
     </div>
     {% endfor %}
 {% endif %}
+</vide>
 </form>
+<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
