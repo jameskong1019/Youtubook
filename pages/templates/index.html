@@ -1,21 +1,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 {% load static %}
 <form action="{% url 'pages:page' %}" method="post">
-{% csrf_token %}
-<fieldset>
-    <h1>Enter youtube url or video ID<h1>
-    <input type="text" name="youtube_url" id="YoutubeUrl">
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-    <input type="submit" value="Page">
-</fieldset>
-<div class="video_list">
-{% if latest_entered_videos %}
-    {% for video in latest_entered_videos %}
-    <div>
-        <a href="{% url 'pages:detail' video_id=video.video_id %}" class="video-link">{{ video.url }}</a>
+    {% csrf_token %}
+    <fieldset>
+        <h1>Enter youtube url or video ID<h1>
+                <input type="text" name="youtube_url" id="YoutubeUrl">
+                {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+                <input type="submit" value="Page">
+    </fieldset>
+    <div class="video_list">
+        {% if latest_entered_videos %}
+        {% for video in latest_entered_videos %}
+        <div>
+            <a href="{% url 'pages:detail' video_id=video.video_id %}" class="video-link">{{ video.url }}</a>
+        </div>
+        {% endfor %}
+        {% endif %}
     </div>
-    {% endfor %}
-{% endif %}
-</vide>
 </form>
 <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
