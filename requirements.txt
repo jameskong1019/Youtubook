@@ -3,3 +3,4 @@ psycopg2
 youtube_transcript_api
 validators
 dj-database-url
+djangorestframework
