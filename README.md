@@ -4,4 +4,4 @@
 
 Tech spec django, youtube transcript api, React.js, css. JavaScript, postegres db\
 Working in progress\
-Demo: [Youtubook](https://youtubook.heroku.app)
+Demo: [Youtubook](https://youtubook.herokuapp.com/)
